@@ -7,6 +7,7 @@ import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Triangle from '../components/Triangle';
 import markdownRenderer from '../components/MarkdownRenderer';
+import avatar from '../../media/avatar.png';
 
 const Background = () => (
   <div>
@@ -43,7 +44,7 @@ const ProfilePicture = styled(Image)`
 
 const About = () => (
   <Section.Container id="about" Background={Background}>
-    <Section.Header name="About me" icon="🙋‍♂️" label="person" />
+    <Section.Header name="About me" icon={avatar} label="person" />
     <StaticQuery
       query={graphql`
         query AboutMeQuery {

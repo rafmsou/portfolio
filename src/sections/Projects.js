@@ -104,55 +104,38 @@ const ProjectTag = styled.div`
 `;
 
 const Project = ({
-  name,
+  companyName,
+  title,
   description,
-  projectUrl,
-  repositoryUrl,
-  type,
-  publishedDate,
-  logo,
+  location,
+  startedOn,
+  finishedOn,
 }) => (
   <Card p={0}>
     <Flex style={{ height: CARD_HEIGHT }}>
       <TextContainer>
         <span>
           <Title my={2} pb={1} color="text">
-            {name}
+            {companyName}
           </Title>
         </span>
-        <Text width={[1]} style={{ overflow: 'auto' }} color="text">
-          {description}
+        <Text style={{ overflow: 'auto' }} color="text">
+          {title}
         </Text>
       </TextContainer>
+      {/* <TextContainer>
+        <Text style={{ overflow: 'auto' }} color="text">
+          {description}
+        </Text>
+      </TextContainer> */}
 
       <ImageContainer>
-        <ProjectImage src={logo.image.src} alt={logo.title} />
         <ProjectTag>
-          <Flex
-            style={{
-              float: 'right',
-            }}
-          >
-            <Box mx={1} fontSize={5}>
-              <SocialLink
-                name="Check repository"
-                fontAwesomeIcon="github"
-                url={repositoryUrl}
-              />
-            </Box>
-            <Box mx={1} fontSize={5}>
-              <SocialLink
-                name="See project"
-                fontAwesomeIcon="globe"
-                url={projectUrl}
-              />
-            </Box>
-          </Flex>
           <ImageSubtitle bg="primary" color="white" y="bottom" x="right" round>
-            {type}
+            {location}
           </ImageSubtitle>
           <Hide query={MEDIA_QUERY_SMALL}>
-            <ImageSubtitle bg="backgroundDark">{publishedDate}</ImageSubtitle>
+            <ImageSubtitle bg="backgroundDark">{startedOn}</ImageSubtitle>
           </Hide>
         </ProjectTag>
       </ImageContainer>
@@ -161,7 +144,8 @@ const Project = ({
 );
 
 Project.propTypes = {
-  name: PropTypes.string.isRequired,
+  companyName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   projectUrl: PropTypes.string.isRequired,
   repositoryUrl: PropTypes.string.isRequired,
@@ -180,31 +164,29 @@ const Projects = () => (
     <Section.Header name="Projects" icon="💻" label="notebook" />
     <StaticQuery
       query={graphql`
-        query ProjectsQuery {
-          contentfulAbout {
-            projects {
-              id
-              name
+        query LinkedInResume {
+          linkedInResume {
+            headline
+            education {
+              schoolName
+              startDate
+            }
+            experiences {
+              companyName
+              title
               description
-              projectUrl
-              repositoryUrl
-              publishedDate(formatString: "YYYY")
-              type
-              logo {
-                title
-                image: resize(width: 200, quality: 100) {
-                  src
-                }
-              }
+              location
+              startedOn
+              finishedOn
             }
           }
         }
       `}
-      render={({ contentfulAbout }) => (
+      render={({ linkedInResume }) => (
         <CardContainer minWidth="350px">
-          {contentfulAbout.projects.map((p, i) => (
-            <Fade bottom delay={i * 200} key={p.id}>
-              <Project {...p} />
+          {linkedInResume.experiences.map((exp, i) => (
+            <Fade bottom delay={i * 200} key={i}>
+              <Project {...exp} />
             </Fade>
           ))}
         </CardContainer>
