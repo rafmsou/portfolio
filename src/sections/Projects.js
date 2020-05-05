@@ -8,7 +8,7 @@ import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
 import SocialLink from '../components/SocialLink';
 import Triangle from '../components/Triangle';
-import ImageSubtitle from '../components/ImageSubtitle';
+import InfoTag from '../components/InfoTag';
 import Hide from '../components/Hide';
 
 const Background = () => (
@@ -44,7 +44,7 @@ const Background = () => (
   </div>
 );
 
-const CARD_HEIGHT = '200px';
+const CARD_HEIGHT = '250px';
 
 const MEDIA_QUERY_SMALL = '@media (max-width: 400px)';
 
@@ -61,46 +61,10 @@ const TextContainer = styled.div`
   flex-direction: column;
   padding: 10px;
   width: 100%;
-  width: calc(100% - ${CARD_HEIGHT});
-
-  ${MEDIA_QUERY_SMALL} {
-    width: calc(100% - (${CARD_HEIGHT} / 2));
-  }
 `;
 
-const ImageContainer = styled.div`
+const BottomRowContainer = styled.div`
   margin: auto;
-  width: ${CARD_HEIGHT};
-
-  ${MEDIA_QUERY_SMALL} {
-    width: calc(${CARD_HEIGHT} / 2);
-  }
-`;
-
-const ProjectImage = styled(Image)`
-  width: ${CARD_HEIGHT};
-  height: ${CARD_HEIGHT};
-  padding: 40px;
-  margin-top: 0px;
-
-  ${MEDIA_QUERY_SMALL} {
-    height: calc(${CARD_HEIGHT} / 2);
-    width: calc(${CARD_HEIGHT} / 2);
-    margin-top: calc(${CARD_HEIGHT} / 4);
-    padding: 10px;
-  }
-`;
-
-const ProjectTag = styled.div`
-  position: relative;
-  height: ${CARD_HEIGHT};
-  top: calc(
-    -${CARD_HEIGHT} - 3.5px
-  ); /*don't know why I have to add 3.5px here ... */
-
-  ${MEDIA_QUERY_SMALL} {
-    top: calc(-${CARD_HEIGHT} - 3.5px + (${CARD_HEIGHT} / 4));
-  }
 `;
 
 const Project = ({
@@ -123,22 +87,28 @@ const Project = ({
           {title}
         </Text>
       </TextContainer>
-      {/* <TextContainer>
-        <Text style={{ overflow: 'auto' }} color="text">
+      <TextContainer>
+        <Text
+          style={{
+            overflow: 'auto',
+            maxHeight: 200,
+          }}
+          color="text"
+          fontSize={12}
+        >
           {description}
         </Text>
-      </TextContainer> */}
-
-      <ImageContainer>
-        <ProjectTag>
-          <ImageSubtitle bg="primary" color="white" y="bottom" x="right" round>
-            {location}
-          </ImageSubtitle>
-          <Hide query={MEDIA_QUERY_SMALL}>
-            <ImageSubtitle bg="backgroundDark">{startedOn}</ImageSubtitle>
-          </Hide>
-        </ProjectTag>
-      </ImageContainer>
+      </TextContainer>
+    </Flex>
+    <Flex>
+      <BottomRowContainer>
+        <InfoTag bg="primary" color="white" y="bottom" x="right">
+          {location}
+        </InfoTag>
+        <InfoTag bg="backgroundDark" y="bottom" x="left">
+          {`${startedOn} - ${finishedOn}`}
+        </InfoTag>
+      </BottomRowContainer>
     </Flex>
   </Card>
 );
@@ -147,16 +117,9 @@ Project.propTypes = {
   companyName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  projectUrl: PropTypes.string.isRequired,
-  repositoryUrl: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  publishedDate: PropTypes.string.isRequired,
-  logo: PropTypes.shape({
-    image: PropTypes.shape({
-      src: PropTypes.string,
-    }),
-    title: PropTypes.string,
-  }).isRequired,
+  location: PropTypes.string.isRequired,
+  startedOn: PropTypes.string.isRequired,
+  finishedOn: PropTypes.string.isRequired,
 };
 
 const Projects = () => (

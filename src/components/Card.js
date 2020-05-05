@@ -19,7 +19,6 @@ export const CardContainer = styled.div`
 export const Card = styled(CardRebass).attrs({
   bg: 'white',
   boxShadow: 0,
-  borderRadius: 8,
 })`
   position: relative;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -27,6 +26,7 @@ export const Card = styled(CardRebass).attrs({
   top: 0;
   height: 100%;
   cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
+  max-width: 420px;
 
   &:hover {
     top: -10px;
