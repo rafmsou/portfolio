@@ -1,8 +1,8 @@
 const colors = require('./colors');
 
 module.exports = {
-  name: 'Rafael Portfolio',
-  short_name: 'Rafael Portfolio',
+  name: 'Rafael Website',
+  short_name: 'Rafael Website',
   start_url: '/',
   background_color: colors.background,
   theme_color: colors.primary,
