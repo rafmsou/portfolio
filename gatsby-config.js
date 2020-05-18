@@ -33,21 +33,19 @@ const plugins = [
       accessToken: ACCESS_TOKEN,
     },
   },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `markdown-pages`,
+      path: `${__dirname}/src/markdown-pages`,
+    },
+  },
   'gatsby-transformer-remark',
   'gatsby-plugin-offline',
   'gatsby-plugin-linkedin-resume',
 ];
 
 module.exports = client.getEntries().then((entries) => {
-  const { mediumUser } = entries.items.find(getAboutEntry).fields;
-
-  plugins.push({
-    resolve: 'gatsby-source-medium',
-    options: {
-      username: mediumUser || '@medium',
-    },
-  });
-
   if (ANALYTICS_ID) {
     plugins.push({
       resolve: 'gatsby-plugin-google-analytics',
@@ -59,7 +57,6 @@ module.exports = client.getEntries().then((entries) => {
 
   return {
     siteMetadata: {
-      isMediumUserDefined: !!mediumUser,
       deterministicBehaviour: !!DETERMINISTIC,
     },
     plugins,
