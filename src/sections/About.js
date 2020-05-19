@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Triangle from '../components/Triangle';
+import myTechStack from '../../media/my-tech-stack.png';
 import markdownRenderer from '../components/MarkdownRenderer';
 
 const Background = () => (
@@ -35,10 +36,6 @@ const Background = () => (
 const ProfilePicture = styled(Image)`
   border-radius: 50%;
   transition: all 0.25s ease-out;
-
-  &:hover {
-    border-radius: 20%;
-  }
 `;
 
 const About = () => (
@@ -72,6 +69,12 @@ const About = () => (
                   source={aboutMe.childMarkdownRemark.rawMarkdownBody}
                   renderers={markdownRenderer}
                 />
+                <Image
+                  src={myTechStack}
+                  sx={{
+                    width: ['50%', '90%'],
+                  }}
+                />
               </Fade>
             </Box>
 
@@ -85,6 +88,9 @@ const About = () => (
                   alt={profile.title}
                   mt={[4, 4, 0]}
                   ml={[0, 0, 1]}
+                  sx={{
+                    width: ['0%', '100%'],
+                  }}
                 />
               </Fade>
             </Box>

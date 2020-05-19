@@ -45,9 +45,11 @@ const EllipsisHeading = styled(Heading)`
 `;
 
 const Post = ({ title, url, date }) => (
-  <Link to={url}>
-    {title} ({date})
-  </Link>
+  <div style={{ padding: 10, textAlign: 'center' }}>
+    <Link to={url}>
+      {title} ({date})
+    </Link>
+  </div>
 );
 
 Post.propTypes = {
