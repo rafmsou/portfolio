@@ -72,7 +72,7 @@ const About = () => (
                 <Image
                   src={myTechStack}
                   sx={{
-                    width: ['50%', '90%'],
+                    width: ['100%', '90%'],
                   }}
                 />
               </Fade>
@@ -80,7 +80,7 @@ const About = () => (
 
             <Box
               width={[1, 1, 2 / 6]}
-              style={{ maxWidth: '300px', margin: 'auto' }}
+              style={{ maxWidth: '300px', margin: '0px auto auto' }}
             >
               <Fade right>
                 <ProfilePicture
@@ -89,7 +89,7 @@ const About = () => (
                   mt={[4, 4, 0]}
                   ml={[0, 0, 1]}
                   sx={{
-                    width: ['0%', '100%'],
+                    width: ['0%', '80%'],
                   }}
                 />
               </Fade>

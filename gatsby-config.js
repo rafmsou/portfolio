@@ -40,6 +40,12 @@ const plugins = [
       path: `${__dirname}/src/markdown-pages`,
     },
   },
+  {
+    resolve: `gatsby-plugin-typography`,
+    options: {
+      pathToConfigModule: `src/utils/typography`,
+    },
+  },
   'gatsby-transformer-remark',
   'gatsby-plugin-offline',
   'gatsby-plugin-linkedin-resume',

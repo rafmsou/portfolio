@@ -45,7 +45,7 @@ const EllipsisHeading = styled(Heading)`
 `;
 
 const Post = ({ title, url, date }) => (
-  <div style={{ padding: 10, textAlign: 'center' }}>
+  <div style={{ padding: 10 }}>
     <Link to={url}>
       {title} ({date})
     </Link>
@@ -69,7 +69,7 @@ const Blog = () => (
               excerpt(pruneLength: 250)
               frontmatter {
                 date(formatString: "MMMM DD, YYYY")
-                path
+                slug
                 title
               }
             }
@@ -90,7 +90,7 @@ const Blog = () => (
               <Post
                 key={post.id}
                 title={post.frontmatter.title}
-                url={post.frontmatter.path}
+                url={post.frontmatter.slug}
                 date={post.frontmatter.date}
               />
             </Fade>

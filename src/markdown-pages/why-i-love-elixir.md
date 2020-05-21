@@ -1,5 +1,5 @@
 ---
-path: '/blog/why-i-love-elixir'
+slug: '/blog/why-i-love-elixir'
 date: '2020-05-18'
 title: 'Why I love Elixir'
 ---
