@@ -11,7 +11,7 @@ const IconLink = styled(Link)`
   color: ${(props) =>
     props.theme.colors[props.color] || props.theme.colors.primary};
   text-decoration: none;
-
+  box-shadow: none;
   &:hover {
     color: ${(props) => props.theme.colors.primaryLight};
   }
